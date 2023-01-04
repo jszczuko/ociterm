@@ -2,6 +2,7 @@ package controller
 
 import (
 	"context"
+	"time"
 
 	"github.com/oracle/oci-go-sdk/v52/common"
 	"github.com/oracle/oci-go-sdk/v52/core"
@@ -15,6 +16,7 @@ type OCIController struct {
 	cancelContext                 func()
 	identityCtrl                  *identityController
 	coreCtrl                      *coreController
+	monitoringCtrl                *monitoringController
 }
 
 func NewOCIControllerDefault() *OCIController {
@@ -27,6 +29,7 @@ func NewOCIControler(filePath string, profile string) *OCIController {
 		configProfile:  "",
 		identityCtrl:   newIdentityController(),
 		coreCtrl:       newCoreController(),
+		monitoringCtrl: newMonitoringController(),
 		configProvider: nil,
 	}
 	res.context, res.cancelContext = context.WithCancel(context.Background())
@@ -77,6 +80,10 @@ func (controller *OCIController) reoladControllers() error {
 	if err := controller.coreCtrl.init(controller.configProvider); err != nil {
 		return err
 	}
+
+	if err := controller.monitoringCtrl.init(controller.configProvider); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -118,4 +125,17 @@ func (controller *OCIController) ListCompartments(compartmentId string,
 
 func (controller *OCIController) ExecuteInstanceAction(instanceOCID *string, action core.InstanceActionActionEnum) (instance *core.Instance, err error) {
 	return controller.coreCtrl.InstanceAction(controller.context, instanceOCID, action)
+}
+
+// monitoring functions
+func (controller *OCIController) CpuUtilization1mLast24hMax(compartmentId string,
+	instanceId string) (map[float64]float64, error) {
+	return controller.monitoringCtrl.getMetrics(
+		controller.context, "CpuUtilization", "1m", instanceId, "max", compartmentId, time.Now(), time.Now().AddDate(0, 0, -1))
+}
+
+func (controller *OCIController) MemoryUtilization1mLast24hMax(compartmentId string,
+	instanceId string) (map[float64]float64, error) {
+	return controller.monitoringCtrl.getMetrics(
+		controller.context, "MemoryUtilization", "1m", instanceId, "max", compartmentId, time.Now(), time.Now().AddDate(0, 0, -1))
 }

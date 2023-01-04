@@ -106,13 +106,15 @@ func NewInstancesAsGUIPanel(TenancyId string, CompartmentId string, OciControlle
 func (panel *InstancesPanel) refreshInstance(instance *core.Instance) {
 	for pageIdx, page := range panel.instancesPages {
 		for instIdx, inst := range *page.instances {
+
 			if *(instance.Id) == *(inst.Id) {
-				func() {
-					panel.instancesPagesLock.Lock()
-					defer panel.instancesPagesLock.Unlock()
-					(*panel.instancesPages[pageIdx].instances)[instIdx] = *instance
-					panel.refreshTable()
-				}()
+				panel.guiController.application.QueueUpdate(
+					func() {
+						panel.instancesPagesLock.Lock()
+						defer panel.instancesPagesLock.Unlock()
+						(*panel.instancesPages[pageIdx].instances)[instIdx] = *instance
+						panel.refreshTable()
+					})
 			}
 		}
 	}

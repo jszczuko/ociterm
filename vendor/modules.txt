@@ -54,6 +54,7 @@ github.com/oracle/oci-go-sdk/v52/common
 github.com/oracle/oci-go-sdk/v52/common/auth
 github.com/oracle/oci-go-sdk/v52/core
 github.com/oracle/oci-go-sdk/v52/identity
+github.com/oracle/oci-go-sdk/v52/monitoring
 # github.com/rivo/tview v0.0.0-20220307222120-9994674d60a8
 ## explicit; go 1.12
 github.com/rivo/tview
