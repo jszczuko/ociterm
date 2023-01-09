@@ -1,7 +1,7 @@
 # github.com/gdamore/encoding v1.0.0
 ## explicit; go 1.9
 github.com/gdamore/encoding
-# github.com/gdamore/tcell/v2 v2.4.1-0.20210905002822-f057f0a857a1
+# github.com/gdamore/tcell/v2 v2.5.4
 ## explicit; go 1.12
 github.com/gdamore/tcell/v2
 github.com/gdamore/tcell/v2/terminfo
@@ -42,10 +42,12 @@ github.com/gdamore/tcell/v2/terminfo/x/xfce
 github.com/gdamore/tcell/v2/terminfo/x/xterm
 github.com/gdamore/tcell/v2/terminfo/x/xterm_kitty
 github.com/gdamore/tcell/v2/terminfo/x/xterm_termite
+# github.com/jszczuko/plot4tview v0.0.0-20230105122343-d5cdca8068c4
+## explicit; go 1.19
 # github.com/lucasb-eyer/go-colorful v1.2.0
 ## explicit; go 1.12
 github.com/lucasb-eyer/go-colorful
-# github.com/mattn/go-runewidth v0.0.13
+# github.com/mattn/go-runewidth v0.0.14
 ## explicit; go 1.9
 github.com/mattn/go-runewidth
 # github.com/oracle/oci-go-sdk/v52 v52.0.0
@@ -55,25 +57,25 @@ github.com/oracle/oci-go-sdk/v52/common/auth
 github.com/oracle/oci-go-sdk/v52/core
 github.com/oracle/oci-go-sdk/v52/identity
 github.com/oracle/oci-go-sdk/v52/monitoring
-# github.com/rivo/tview v0.0.0-20220307222120-9994674d60a8
-## explicit; go 1.12
+# github.com/rivo/tview v0.0.0-20230104153304-892d1a2eb0da
+## explicit; go 1.18
 github.com/rivo/tview
-# github.com/rivo/uniseg v0.2.0
-## explicit; go 1.12
+# github.com/rivo/uniseg v0.4.3
+## explicit; go 1.18
 github.com/rivo/uniseg
 # github.com/sony/gobreaker v0.5.0
 ## explicit; go 1.12
 github.com/sony/gobreaker
-# golang.org/x/sys v0.0.0-20220330033206-e17cdc41300f
+# golang.org/x/sys v0.4.0
 ## explicit; go 1.17
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/plan9
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
+# golang.org/x/term v0.4.0
 ## explicit; go 1.17
 golang.org/x/term
-# golang.org/x/text v0.3.7
+# golang.org/x/text v0.6.0
 ## explicit; go 1.17
 golang.org/x/text/encoding
 golang.org/x/text/encoding/internal/identifier

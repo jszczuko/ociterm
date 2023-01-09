@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/gdamore/tcell/v2"
+	"github.com/rivo/uniseg"
 )
 
 // dropDownOption is one option that can be selected in a drop-down primitive.
@@ -243,6 +244,11 @@ func (d *DropDown) GetFieldWidth() int {
 	return fieldWidth
 }
 
+// GetFieldHeight returns this primitive's field height.
+func (d *DropDown) GetFieldHeight() int {
+	return 1
+}
+
 // AddOption adds a new selectable option to this drop-down. The "selected"
 // callback is called when this option was selected. It may be nil.
 func (d *DropDown) AddOption(text string, selected func()) *DropDown {
@@ -373,7 +379,7 @@ func (d *DropDown) Draw(screen tcell.Screen) {
 	if d.open && len(d.prefix) > 0 {
 		// Show the prefix.
 		currentOptionPrefixWidth := TaggedStringWidth(d.currentOptionPrefix)
-		prefixWidth := stringWidth(d.prefix)
+		prefixWidth := uniseg.StringWidth(d.prefix)
 		listItemText := d.options[d.list.GetCurrentItem()].Text
 		Print(screen, d.currentOptionPrefix, x, y, fieldWidth, AlignLeft, d.fieldTextColor)
 		Print(screen, d.prefix, x+currentOptionPrefixWidth, y, fieldWidth-currentOptionPrefixWidth, AlignLeft, d.prefixTextColor)
@@ -395,12 +401,20 @@ func (d *DropDown) Draw(screen tcell.Screen) {
 
 	// Draw options list.
 	if d.HasFocus() && d.open {
-		// We prefer to drop down but if there is no space, maybe drop up?
 		lx := x
 		ly := y + 1
 		lwidth := maxWidth
 		lheight := len(d.options)
-		_, sheight := screen.Size()
+		swidth, sheight := screen.Size()
+		// We prefer to align the left sides of the list and the main widget, but
+		// if there is no space to the right, then shift the list to the left.
+		if lx+lwidth >= swidth {
+			lx = swidth - lwidth
+			if lx < 0 {
+				lx = 0
+			}
+		}
+		// We prefer to drop down but if there is no space, maybe drop up?
 		if ly+lheight >= sheight && ly-2 > lheight-ly {
 			ly = y - lheight
 			if ly < 0 {
@@ -546,7 +560,11 @@ func (d *DropDown) MouseHandler() func(action MouseAction, event *tcell.EventMou
 			return d.InRect(x, y), nil // No, and it's not expanded either. Ignore.
 		}
 
-		// Handle dragging. Clicks are implicitly handled by this logic.
+		// As long as the drop-down is open, we capture all mouse events.
+		if d.open {
+			capture = d
+		}
+
 		switch action {
 		case MouseLeftDown:
 			consumed = d.open || inRect
@@ -563,7 +581,6 @@ func (d *DropDown) MouseHandler() func(action MouseAction, event *tcell.EventMou
 				// dragging. Because we don't act upon it, it's not a problem.
 				d.list.MouseHandler()(MouseLeftClick, event, setFocus)
 				consumed = true
-				capture = d
 			}
 		case MouseLeftUp:
 			if d.dragging {
