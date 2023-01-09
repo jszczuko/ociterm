@@ -128,14 +128,14 @@ func (controller *OCIController) ExecuteInstanceAction(instanceOCID *string, act
 }
 
 // monitoring functions
-func (controller *OCIController) CpuUtilization1mLast24hMax(compartmentId string,
+func (controller *OCIController) CpuUtilization10mLast24hMax(compartmentId string,
 	instanceId string) (map[float64]float64, error) {
 	return controller.monitoringCtrl.getMetrics(
-		controller.context, "CpuUtilization", "1m", instanceId, "max", compartmentId, time.Now(), time.Now().AddDate(0, 0, -1))
+		controller.context, "CpuUtilization", "10m", instanceId, "max", compartmentId, time.Now(), time.Now().AddDate(0, 0, -1))
 }
 
-func (controller *OCIController) MemoryUtilization1mLast24hMax(compartmentId string,
+func (controller *OCIController) MemoryUtilization10mLast24hMax(compartmentId string,
 	instanceId string) (map[float64]float64, error) {
 	return controller.monitoringCtrl.getMetrics(
-		controller.context, "MemoryUtilization", "1m", instanceId, "max", compartmentId, time.Now(), time.Now().AddDate(0, 0, -1))
+		controller.context, "MemoryUtilization", "10m", instanceId, "max", compartmentId, time.Now(), time.Now().AddDate(0, 0, -1))
 }
