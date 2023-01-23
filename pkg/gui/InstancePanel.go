@@ -375,24 +375,36 @@ func (panel *InstancesPanel) refreshTable() {
 					AddButtons([]string{"Execute", "Cancel"}).
 					SetDoneFunc(func(buttonIndex int, buttonLabel string) {
 						defer func() {
+							log.Println("tutaj 9")
 							panel.guiController.RemovePage(modalName, detail.GetPanelName())
+							log.Println("tutaj 10")
 							panel.guiController.RemovePage(detail.GetPanelName(), n_main)
+							log.Println("tutaj 11")
 							panel.guiController.SetFocus(panel.gui.mainTable)
+							log.Println("tutaj 12")
 						}()
 
 						if buttonLabel == "Execute" {
 							func() {
+								log.Println("tutaj 1")
 								panel.guiController.SetLoading()
+								log.Println("tutaj 2")
 								defer panel.guiController.RemoveLoading()
+								log.Println("tutaj 3")
 								ocid := detail.GetInstanceOCID()
+								log.Println("tutaj 4")
 								action := detail.GetSelectedAction()
+								log.Println("tutaj 5")
 								newInstance, err := panel.ociController.ExecuteInstanceAction(&ocid, action)
+								log.Println("tutaj 6")
 								if err != nil {
 									log.Print("ERROR " + err.Error())
 									return
 								}
+								log.Println("tutaj 7")
 								panel.refreshInstance(newInstance)
 							}()
+							log.Println("tutaj 8")
 						}
 					})
 				panel.guiController.AddPage(modalName, modal, false)
@@ -406,9 +418,14 @@ func (panel *InstancesPanel) refreshTable() {
 			instance := instances[row-1]
 			go panel.RefreshOciIntance(*instance.Id)
 		}
+
+		// m for monitoring
+		if tcell.KeyRune == key && event.Rune() == 'm' {
+			// TODO
+		}
 		return event
 	})
-	// open comparment detail window
+	// open instace detail window
 	panel.gui.mainTable.SetSelectedFunc(func(row, column int) {
 		panelName := "InstanceDetailPanel"
 		instances := *(panel.instancesPages[panel.currentPageIdx].instances)
@@ -503,7 +520,7 @@ func (panel *InstancesPanel) Remove(pages *tview.Pages) {
 }
 
 func (panel *InstancesPanel) GetInfo() string {
-	return "[red]Enter:[white] Details [red]Esc:[white] Exit [green]a:[white] Action [green]r:[white] Refresh"
+	return "[red]Enter:[white] Details [red]Esc:[white] Exit [green]a:[white] Action [green]r:[white] Refresh [green]m:[white] Monitoring"
 }
 
 func (panel *InstancesPanel) RefreshOciIntance(OcidId string) {
