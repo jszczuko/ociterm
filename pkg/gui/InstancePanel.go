@@ -106,15 +106,13 @@ func NewInstancesAsGUIPanel(TenancyId string, CompartmentId string, OciControlle
 func (panel *InstancesPanel) refreshInstance(instance *core.Instance) {
 	for pageIdx, page := range panel.instancesPages {
 		for instIdx, inst := range *page.instances {
-
 			if *(instance.Id) == *(inst.Id) {
-				panel.guiController.application.QueueUpdate(
-					func() {
-						panel.instancesPagesLock.Lock()
-						defer panel.instancesPagesLock.Unlock()
-						(*panel.instancesPages[pageIdx].instances)[instIdx] = *instance
-						panel.refreshTable()
-					})
+				func() {
+					panel.instancesPagesLock.Lock()
+					defer panel.instancesPagesLock.Unlock()
+					(*panel.instancesPages[pageIdx].instances)[instIdx] = *instance
+					panel.refreshTable()
+				}()
 			}
 		}
 	}
@@ -375,36 +373,24 @@ func (panel *InstancesPanel) refreshTable() {
 					AddButtons([]string{"Execute", "Cancel"}).
 					SetDoneFunc(func(buttonIndex int, buttonLabel string) {
 						defer func() {
-							log.Println("tutaj 9")
 							panel.guiController.RemovePage(modalName, detail.GetPanelName())
-							log.Println("tutaj 10")
 							panel.guiController.RemovePage(detail.GetPanelName(), n_main)
-							log.Println("tutaj 11")
 							panel.guiController.SetFocus(panel.gui.mainTable)
-							log.Println("tutaj 12")
 						}()
 
 						if buttonLabel == "Execute" {
 							func() {
-								log.Println("tutaj 1")
 								panel.guiController.SetLoading()
-								log.Println("tutaj 2")
 								defer panel.guiController.RemoveLoading()
-								log.Println("tutaj 3")
 								ocid := detail.GetInstanceOCID()
-								log.Println("tutaj 4")
 								action := detail.GetSelectedAction()
-								log.Println("tutaj 5")
 								newInstance, err := panel.ociController.ExecuteInstanceAction(&ocid, action)
-								log.Println("tutaj 6")
 								if err != nil {
 									log.Print("ERROR " + err.Error())
 									return
 								}
-								log.Println("tutaj 7")
 								panel.refreshInstance(newInstance)
 							}()
-							log.Println("tutaj 8")
 						}
 					})
 				panel.guiController.AddPage(modalName, modal, false)
