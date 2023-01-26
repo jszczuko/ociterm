@@ -154,7 +154,7 @@ func (panel *guiTopPanel) createLayout() {
 
 func (panel *guiTopPanel) GetSelectedCompartment() *identity.Compartment {
 	idx, _ := panel.compartmentsDropDown.GetCurrentOption()
-	if idx > 0 {
+	if idx > 0 && idx <= len(*panel.compartments) {
 		return &(*panel.compartments)[idx-1] // As the first one is empty
 	}
 	return nil
@@ -170,7 +170,7 @@ func (panel *guiTopPanel) GetSelectedCompartmentId() string {
 
 func (panel *guiTopPanel) GetSelectedRegion() *identity.Region {
 	idx, _ := panel.regionsDropDown.GetCurrentOption()
-	if idx > -1 {
+	if idx > -1 && idx < len(*panel.regions) {
 		return &(*panel.regions)[idx]
 	}
 	return nil

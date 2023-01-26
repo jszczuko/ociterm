@@ -102,7 +102,6 @@ func (ociterm *OciTerm) init() {
 		if key == tcell.KeyTAB {
 			ociterm.app.SetFocus(ociterm.guiController.GetGUITopPanel().GetRegionDropDown())
 		} else if key == tcell.KeyEnter {
-
 			ociterm.guiController.SetLoading()
 			go func() {
 				defer func() {
