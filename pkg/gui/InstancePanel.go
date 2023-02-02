@@ -407,6 +407,11 @@ func (panel *InstancesPanel) refreshTable() {
 
 		// m for monitoring
 		if tcell.KeyRune == key && event.Rune() == 'm' {
+			row, _ := panel.gui.mainTable.GetSelection()
+			instances := *(panel.instancesPages[panel.currentPageIdx].instances)
+			instance := instances[row-1]
+			monitoringPanel := NewInstanceMonitoringPanel(panel.guiController, panel.ociController, &instance)
+			panel.guiController.AddPage(monitoringPanel.GetPanelName(), monitoringPanel.GetGUI(), true)
 			// TODO
 		}
 		return event
