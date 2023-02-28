@@ -85,8 +85,12 @@ func (controller *monitoringController) getMetricsByQuery(
 	if len(resp.Items) > 1 {
 		return nil, fmt.Errorf("number of Items returned should be 1, got %d", len(resp.Items))
 	}
+	if len(resp.Items) == 0 {
+		return nil, fmt.Errorf("no data found")
+	}
 
 	result := make(map[float64]float64)
+
 	for _, item := range resp.Items[0].AggregatedDatapoints {
 		t := float64(item.Timestamp.Time.Unix())
 		v := item.Value

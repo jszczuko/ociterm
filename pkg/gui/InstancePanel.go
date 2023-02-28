@@ -410,8 +410,17 @@ func (panel *InstancesPanel) refreshTable() {
 			row, _ := panel.gui.mainTable.GetSelection()
 			instances := *(panel.instancesPages[panel.currentPageIdx].instances)
 			instance := instances[row-1]
-			monitoringPanel := NewInstanceMonitoringPanel(panel.guiController, panel.ociController, &instance)
+			monitoringPanel := NewInstanceMonitoringPanel(panel.guiController, panel.ociController, &instance, panel.compartmentId)
+			panel.guiController.SetFocus(monitoringPanel.gui.exitButton)
+			monitoringPanel.gui.exitButton.SetExitFunc(func(key tcell.Key) {
+				if tcell.KeyEscape == key {
+					panel.guiController.RemovePage(monitoringPanel.GetPanelName(), n_main)
+					panel.guiController.SetFocus(panel.gui.mainTable)
+				}
+			})
 			panel.guiController.AddPage(monitoringPanel.GetPanelName(), monitoringPanel.GetGUI(), true)
+
+			monitoringPanel.LoadData()
 			// TODO
 		}
 		return event
