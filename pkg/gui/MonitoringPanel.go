@@ -157,9 +157,7 @@ func (panel *InstanceMonitoringPanel) LoadData() {
 			panel.gui.memoryBar.SetData(Float64MapToArray(data))
 		}
 	}()
-
 	wg.Wait()
-	// panel.gui.cpuBar.SetData()
 }
 
 func Float64MapToArray(floatMap map[float64]float64) [][]float64 {
