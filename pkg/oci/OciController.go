@@ -70,6 +70,7 @@ func (controller *OCIController) ReloadConfig(filePath string, profile string) e
 func (controller *OCIController) ChangeRegion(region string) {
 	controller.identityCtrl.client.SetRegion(region)
 	controller.coreCtrl.computeClient.SetRegion(region)
+	controller.monitoringCtrl.client.SetRegion(region)
 }
 
 func (controller *OCIController) reoladControllers() error {
