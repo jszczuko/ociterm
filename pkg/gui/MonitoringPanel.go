@@ -1,7 +1,6 @@
 package gui
 
 import (
-	// oci "github.com/jszczuko/ociterm/pkg/oci"
 	"fmt"
 	"sync"
 	"time"
@@ -133,26 +132,24 @@ func (panel *InstanceMonitoringPanel) createGUI() {
 }
 
 func (panel *InstanceMonitoringPanel) LoadData() {
-	// TODO load data
 
 	var wg sync.WaitGroup
 
-	wg.Add(1)
+	wg.Add(2)
 	go func() {
 		defer wg.Done()
 		data, err := panel.ociController.CpuUtilization10mLast24hMax(panel.data.compartmentId, *panel.data.instance.Id)
 		if err != nil {
-			panel.gui.cpuBar.SetNoDataText("Data could not be loaded.")
+			panel.gui.cpuBar.SetNoDataText("No data loaded.")
 		} else {
 			panel.gui.cpuBar.SetData(Float64MapToArray(data))
 		}
 	}()
-	wg.Add(1)
 	go func() {
 		defer wg.Done()
 		data, err := panel.ociController.MemoryUtilization10mLast24hMax(panel.data.compartmentId, *panel.data.instance.Id)
 		if err != nil {
-			panel.gui.memoryBar.SetNoDataText("Data could not be loaded.")
+			panel.gui.memoryBar.SetNoDataText("No data loaded.")
 		} else {
 			panel.gui.memoryBar.SetData(Float64MapToArray(data))
 		}
