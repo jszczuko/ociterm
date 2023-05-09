@@ -8,6 +8,8 @@ github.com/gdamore/tcell/v2 v2.5.4 h1:TGU4tSjD3sCL788vFNeJnTdzpNKIw1H5dgLnJRQVv/
 github.com/gdamore/tcell/v2 v2.5.4/go.mod h1:dZgRy5v4iMobMEcWNYBtREnDZAT9DYmfqIkrgEMxLyw=
 github.com/jszczuko/plot4tview v0.0.0-20230105122343-d5cdca8068c4 h1:fPF6Gdbw0d13kdwq5sz3tq7rUoi6XPjRW3yf5ZZXcQ8=
 github.com/jszczuko/plot4tview v0.0.0-20230105122343-d5cdca8068c4/go.mod h1:/scbtshbqquw+cdjn2dw8XotvoISJQHqHoAghREyr3I=
+github.com/jszczuko/plot4tview v0.0.0-20230509100608-1f1ba91edfb4 h1:8YJ9/E/Oiy6HNYfVhfQh/O8p5AOMJtXFaZGkEBJTZJ8=
+github.com/jszczuko/plot4tview v0.0.0-20230509100608-1f1ba91edfb4/go.mod h1:/scbtshbqquw+cdjn2dw8XotvoISJQHqHoAghREyr3I=
 github.com/lucasb-eyer/go-colorful v1.2.0 h1:1nnpGOrhyZZuNyfu1QjKiUICQ74+3FNCN69Aj6K7nkY=
 github.com/lucasb-eyer/go-colorful v1.2.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=
 github.com/mattn/go-runewidth v0.0.13 h1:lTGmDsbAYt5DmK6OnoV7EuIF1wEIFAcxld6ypU4OSgU=

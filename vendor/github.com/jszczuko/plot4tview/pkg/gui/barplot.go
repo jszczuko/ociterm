@@ -204,7 +204,7 @@ func (plot *BarPlot) drawYaxisLines(screen tcell.Screen, x int, y int, width int
 
 	for i := 0; i < yLines; i++ {
 		val := plot.extremesY.maxVal - float64(i)*stepDiffY
-		screen.SetContent(width-1, y+i*2, '-', nil, tcell.StyleDefault)
+		screen.SetContent(x+width-1, y+i*2, '-', nil, tcell.StyleDefault)
 		tview.Print(screen, plot.yaxis2String(val), x, y+i*2, 9, 1, tcell.ColorRed)
 	}
 	return y, (yLines - 1) * 2

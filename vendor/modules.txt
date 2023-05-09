@@ -42,7 +42,7 @@ github.com/gdamore/tcell/v2/terminfo/x/xfce
 github.com/gdamore/tcell/v2/terminfo/x/xterm
 github.com/gdamore/tcell/v2/terminfo/x/xterm_kitty
 github.com/gdamore/tcell/v2/terminfo/x/xterm_termite
-# github.com/jszczuko/plot4tview v0.0.0-20230105122343-d5cdca8068c4
+# github.com/jszczuko/plot4tview v0.0.0-20230509100608-1f1ba91edfb4
 ## explicit; go 1.19
 github.com/jszczuko/plot4tview/pkg/gui
 # github.com/lucasb-eyer/go-colorful v1.2.0

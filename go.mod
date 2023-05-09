@@ -19,6 +19,6 @@ require (
 )
 
 require (
-	github.com/jszczuko/plot4tview v0.0.0-20230105122343-d5cdca8068c4 // indirect
+	github.com/jszczuko/plot4tview v0.0.0-20230509100608-1f1ba91edfb4 // indirect
 	github.com/sony/gobreaker v0.5.0 // indirect
 )
