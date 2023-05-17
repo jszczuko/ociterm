@@ -3,3 +3,4 @@
 *.log
 ociterm
 ociterm*
+.DS_Store
