@@ -1,9 +1,9 @@
 
 ![animation](images/anim.gif)
 
-# Disclamer
+# Disclaimer
 
-This project is NOT Oralce product. It's just application I've written in free time as functionality demonstrator. 
+This project is NOT Oracle product. It's just application I've written in free time as functionality demonstrator. 
 
 **All bugs are mine and mine alone.**
 
@@ -16,6 +16,7 @@ It's something between cloud console and cli. Hope you like it and find it usefu
 1. [Motivation](#motivation)
 2. [Configuration](#configuration)
 3. [Basic instruction](#instruction)
+4. [Dependencies](#dependencies)
 
 # Motivation <a name="motivation"></a>
 
@@ -69,3 +70,19 @@ Press Enter on main Refresh button.
 ![refresh button](images/basic-instruction-05.png)
 Press Enter on Refresh button of main resource table.
 ![refresh table](images/basic-instruction-06.png)
+
+## Basic navigation
+
+- Tab - next;
+- Shift + Tab - previous;
+- Enter - enter :) ;
+- Esc - exit;
+- Ctrl + C - exit application
+
+# Dependencies <a name="dependencies"></a>
+
+- [oci sdk](https://github.com/oracle/oci-go-sdk) with all its dependencies;
+- [tview](https://github.com/rivo/tview) with all its dependencies;
+- [plot4tview](github.com/jszczuko/plot4tview).
+
+List of all dependecies can be found in [go.mod](go.mod) file.
