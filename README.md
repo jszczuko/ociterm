@@ -17,6 +17,7 @@ It's something between cloud console and cli. Hope you like it and find it usefu
 2. [Configuration](#configuration)
 3. [Basic instruction](#instruction)
 4. [Dependencies](#dependencies)
+5. [Installation](#installation)
 
 # Motivation <a name="motivation"></a>
 
@@ -80,9 +81,38 @@ Press Enter on Refresh button of main resource table.
 - Ctrl + C - exit application
 
 # Dependencies <a name="dependencies"></a>
-
+- [golang](https://go.dev/dl/) >= 1.18
 - [oci sdk](https://github.com/oracle/oci-go-sdk) with all its dependencies;
 - [tview](https://github.com/rivo/tview) with all its dependencies;
 - [plot4tview](github.com/jszczuko/plot4tview).
 
 List of all dependecies can be found in [go.mod](go.mod) file.
+
+# Installation <a name="installation"></a>
+
+## From sources
+
+Clone repository
+```bash
+git clone https://github.com/jszczuko/ociterm.git
+```
+build binary
+```bash
+go build -o ociterm github.com/jszczuko/ociterm
+```
+Result will be binary build for your platform.
+
+## From binary
+
+Download newest version of [release](https://github.com/jszczuko/ociterm/releases).
+Unzip it.
+Use the version compiled for your architecture.
+
+```bash
+21000 -rwxr-xr-x   1 jszczuko  jszczuko    10M Jun  5 14:07 ociterm-darwin-amd64
+20576 -rwxr-xr-x   1 jszczuko  jszczuko    10M Jun  5 14:07 ociterm-darwin-arm64
+20360 -rwxr-xr-x   1 jszczuko  jszczuko   9.9M Jun  5 14:08 ociterm-linux-386
+21312 -rwxr-xr-x   1 jszczuko  jszczuko    10M Jun  5 14:08 ociterm-linux-amd64
+20712 -rwxr-xr-x   1 jszczuko  jszczuko    10M Jun  5 14:08 ociterm-windows-386.exe
+21392 -rwxr-xr-x   1 jszczuko  jszczuko    10M Jun  5 14:09 ociterm-windows-amd64.exe
+```
