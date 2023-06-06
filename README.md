@@ -21,7 +21,7 @@ It's something between cloud console and cli. Hope you like it and find it usefu
 
 # Motivation <a name="motivation"></a>
 
-[OCI](https://www.oracle.com/cloud/) provides awesome tools to manage resources. Both [OCI console](https://www.oracle.com) and [OCI CLI](https://github.com/oracle/oci-cli) are more than enough to mange resources in any way necessary.  But hammer is perfect tool when you have to hammer a nail, when you have to paint a wall it tends to be less useful. 
+[OCI](https://www.oracle.com/cloud/) provides awesome tools to manage resources. Both [OCI console](https://www.oracle.com) and [OCI CLI](https://github.com/oracle/oci-cli) are more than enough to manage resources in any way necessary.  But hammer is perfect tool when you have to hammer a nail, when you have to paint a wall it tends to be less useful. 
 I found myself in specific use case condition. I have to switch between [tenancies](https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingtenancy.htm) very rapidly and I normally operate with name of resource as key value not [OCID](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/identifiers.htm).  Very often action required is very simple, like START/STOP/RESTART compute instance and I found that most time in these cases is used for moving between tenancies and it's basically wasted. 
 
 To switch between tenancies in OCI console you need to logout and login to new tenancy and if you are doing this often enough depending on browser you are using, you can run into a problem of cached sessions. 
@@ -37,7 +37,7 @@ In addition I wanted to work on some useful tool in [GOLANG](https://go.dev/).
 
 # Configuration <a name="configuration"></a>
 
-Application is suing subset of standard [OCI CLI configuration file](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliconfigure.htm) located in by default in ```$HOME/.oci/config```.
+Application is using subset of standard [OCI CLI configuration file](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliconfigure.htm) located in by default in ```$HOME/.oci/config```.
 Minimum required information is described below:
 
 ```properties
